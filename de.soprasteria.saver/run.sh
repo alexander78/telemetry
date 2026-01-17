@@ -17,9 +17,10 @@ fi
 
 mkdir -p "$BUILD_DIR"
 
-# Compiler le code source
+# Compiler le code source - trouver tous les fichiers .java
 echo "📦 Compilation en cours..."
-javac -d "$BUILD_DIR" -sourcepath "$SRC_DIR" "$SRC_DIR/de/soprasteria/saver/Starter.java" "$SRC_DIR/de/soprasteria/saver"/**/*.java
+find "$SRC_DIR" -name "*.java" > /tmp/sources.txt
+javac -d "$BUILD_DIR" @/tmp/sources.txt
 
 if [ $? -eq 0 ]; then
     echo "✅ Compilation réussie!"

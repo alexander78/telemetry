@@ -13,9 +13,11 @@ set SRC_DIR=src
 if exist %BUILD_DIR% rmdir /s /q %BUILD_DIR%
 mkdir %BUILD_DIR%
 
-REM Compiler le code source
+REM Creer une liste de tous les fichiers .java
 echo 📦 Compilation en cours...
-javac -d %BUILD_DIR% -sourcepath %SRC_DIR% %SRC_DIR%\de\soprasteria\saver\Starter.java %SRC_DIR%\de\soprasteria\saver\**\*.java
+dir /s /B %SRC_DIR%\*.java > sources.txt
+javac -d %BUILD_DIR% @sources.txt
+del sources.txt
 
 if %ERRORLEVEL% EQU 0 (
     echo ✅ Compilation reussie!
